@@ -1,5 +1,7 @@
 const item = document.querySelectorAll("#item")[0];
 const toDoBox = document.querySelectorAll("#to-do-box")[0];
+const toDoBtn = document.querySelectorAll("#addbtn")[0];
+
 
 item.addEventListener(
     "keyup",
@@ -24,13 +26,19 @@ const addToDo = (item) => {
             this.classList.toggle("done")
         })
 
-        listItem.querySelectorAll("i")[0].addEventListener(
-            "click",
-            function() {
-                listItem.remove()
-            }
-        )
+    listItem.querySelectorAll("i")[0].addEventListener(
+        "click",
+        function () {
+            listItem.remove()
+        }
+    )
 
     toDoBox.appendChild(listItem);
 }
 
+toDoBtn.addEventListener("click", function () {
+    if (item.value.trim() !== "") {
+        addToDo(item.value);
+        item.value = "";
+    }
+});
